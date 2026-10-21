@@ -98,8 +98,9 @@ it.
 - Only visible with the sidebar expanded; in the 56 px rail the row is hidden.
 - The balance is the **API account** balance (`DEEPSEEK_API_KEY`). If the key is
   changed in the environment, the next cycle reads the new balance.
-- The currency comes from the API and is limited to **CNY or USD**; other
-  currencies are not provided and there is no conversion.
+- The currency comes from the API and is limited to **CNY or USD**; when both
+  wallets exist, the row shows **USD** first and the other currency in the
+  tooltip. Other currencies are not provided and there is no conversion.
 
 ## License
 
