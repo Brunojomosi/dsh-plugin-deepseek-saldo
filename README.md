@@ -1,110 +1,110 @@
-# DeepSeek Balance — plugin do DSH
+# DeepSeek Balance — DSH plugin
 
-**Português** | [English](README.en.md)
+[Português](README.pt-BR.md) | **English**
 
-Mostra o saldo em dinheiro da sua conta DeepSeek na barra lateral esquerda,
-**logo acima do botão "More"**.
+Shows the money balance of your DeepSeek account in the left sidebar, **right
+above the "More" button**.
 
 ```
-[ícone] Balance                    US$ 12,34
-[•••]   More
+[icon] Balance                    US$ 12.34
+[•••]  More
 ```
 
-![Linha "Balance" acima do botão "More" na barra lateral do DSH](https://raw.githubusercontent.com/Brunojomosi/dsh-plugin-deepseek-saldo/main/docs/preview.png)
+![The "Balance" row above the "More" button in the DSH sidebar](https://raw.githubusercontent.com/Brunojomosi/dsh-plugin-deepseek-saldo/main/docs/preview.png)
 
-## O que ele faz
+## What it does
 
-- Lê o saldo em `GET https://api.deepseek.com/user/balance` usando a mesma
-  credencial `DEEPSEEK_API_KEY` que o provedor `deepseek-official` do DSH usa.
-- Exibe o **saldo total** (recarregado + concedido) na moeda devolvida pela API
-  (normalmente `USD`). O número é formatado com a localidade do navegador
-  (por exemplo `US$ 12,34`).
-- Atualiza sozinho a cada 60 segundos enquanto a janela está visível.
-- **Clique na linha** para forçar uma leitura nova (ignora o cache de 30 s).
-- Passe o mouse para ver o detalhamento: concedido, recarregado, hora da
-  última leitura e dica de uso.
-- Em caso de problema, mostra `—` com o motivo no tooltip:
-  - `DEEPSEEK_API_KEY` ausente no ambiente de lançamento/credenciais;
-  - chave recusada pela API (HTTP 401/403);
-  - falha de rede/timeout;
-  - saldo abaixo do mínimo para novas requisições (valor em cor de aviso).
+- Reads the balance from `GET https://api.deepseek.com/user/balance` using the
+  same `DEEPSEEK_API_KEY` credential the DSH `deepseek-official` provider uses.
+- Shows the **total balance** (topped up + granted) in the currency returned by
+  the API (usually `USD`), formatted with the browser locale.
+- Refreshes itself every 60 seconds while the window is visible.
+- **Click the row** to force a fresh read (bypasses the 30 s host cache).
+- Hover for details: granted, topped up, last read time and a usage hint.
+- On failure it shows `—` with the reason in the tooltip:
+  - `DEEPSEEK_API_KEY` missing from credentials/launch environment;
+  - key rejected by the API (HTTP 401/403);
+  - network failure/timeout;
+  - balance below the minimum for new requests (value in warning color).
 
-## Requisitos
+## Requirements
 
-- DSH 0.2.1-rc.2 (testado nessa versão; usa a API de slots de cliente e a
-  Connection autenticada do harness).
-- Credencial `DEEPSEEK_API_KEY` configurada — na página **Modelos** do DSH ou
-  como variável de ambiente do processo que inicia o app.
-- Nenhuma dependência npm e nenhum script de instalação.
+- DSH 0.2.1-rc.2 (tested on that version; it uses the client slot API and the
+  authenticated harness Connection).
+- `DEEPSEEK_API_KEY` configured — on DSH's **Models** page or as an environment
+  variable of the process that starts the app.
+- No npm dependencies and no install scripts.
 
-## Instalação
+## Install
 
-Com o DSH aberto, peça ao agente:
+With DSH open, ask the agent:
 
-> instale o plugin `dsh-plugin-deepseek-saldo`
+> install the `dsh-plugin-deepseek-saldo` plugin
 
-Quando o pacote estiver publicado no npm, o `plugin_manager` baixa e habilita
-sozinho. Enquanto isso, clone este repositório e instale a pasta:
+`plugin_manager` downloads it from npm and enables it in the profile. After
+installing, the row appears on its own; no restart is needed on the first
+install.
+
+Alternative (from source): clone this repository and install the folder:
 
 ```bash
 git clone https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo.git
 ```
 
-> instale o plugin a partir da pasta `C:\caminho\do\clone`
+> install the plugin from the folder `C:\path\to\clone`
 
-O `plugin_manager` aceita o caminho absoluto do pacote. Depois de instalado, a
-linha aparece sozinha na barra lateral; não é preciso reiniciar o app na
-primeira instalação.
+`plugin_manager` accepts the absolute path of the package.
 
-Repositório e issues:
+Repository and issues:
 <https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo>
 
-## Privacidade e segurança
+## Privacy and security
 
-- O único endereço externo é `https://api.deepseek.com/user/balance`.
-- A chave fica apenas no processo do host: a página recebe somente número,
-  moeda e horário, por uma rota autenticada da Connection do DSH
+- The only external address is `https://api.deepseek.com/user/balance`.
+- The key stays inside the host process: the page receives only the number,
+  currency and timestamp, through an authenticated DSH Connection route
   (`/api/deepseek-balance/state`).
-- O plugin não tem telemetria, não grava arquivos, não lê cookies/localStorage
-  e não executa comandos.
+- No telemetry, no file writes, no cookies/localStorage reads, no command
+  execution.
 
-## Estrutura
+## Layout
 
-| Arquivo | Papel |
+| File | Role |
 |---|---|
-| `lib/index.js` | Metade de host: registra a rota autenticada na Connection do DSH e chama a API da DeepSeek. |
-| `lib/client.js` | Metade de navegador: registra a linha em `sidebar.footer.action` (o espaço imediatamente acima do menu da conta). |
-| `cordis.patch.yml` | Insere a entrada `deepseek-balance` no Loader do perfil. |
-| `locale/en.json`, `locale/zh.json` | Título e descrição exibidos em Configurações → Plugins. |
-| `icon.svg` | Ícone do plugin na lista de plugins. |
+| `lib/index.js` | Host half: registers the authenticated Connection route and calls the DeepSeek API. |
+| `lib/client.js` | Browser half: registers the row in `sidebar.footer.action` (the space right above the account menu). |
+| `cordis.patch.yml` | Inserts the `deepseek-balance` entry into the profile Loader. |
+| `locale/en.json`, `locale/zh.json` | Title and description shown in Settings → Plugins. |
+| `icon.svg` | Plugin icon in the plugin list. |
 
-## Onde fica e como remover
+## Where it lives and how to remove
 
-O DSH instala o pacote como *link* para uma pasta do seu computador, então ela
-precisa continuar existindo. Uma escolha comum é:
+DSH installs the package as a *link* to a folder on your computer, so that folder
+must keep existing. A common choice is:
 
 ```
 %USERPROFILE%\.dsh-plugins\dsh-plugin-deepseek-saldo
 ```
 
-Mantenha a pasta fora de `Downloads` e fora da pasta de instalação do app, para
-que limpezas e atualizações do DSH não afetem o plugin.
+Keep the folder out of `Downloads` and out of the app installation folder, so
+cleanups and DSH updates cannot affect the plugin.
 
-Para remover: Configurações → Plugins → DeepSeek Balance → desinstalar
-(ou `plugin_manager` com `remove_bundle`). Reinicie o app se a remoção pedir.
+To remove: Settings → Plugins → DeepSeek Balance → uninstall (or
+`plugin_manager` with `remove_bundle`). Restart the app if the removal asks for
+it.
 
-> **Reinstalação:** o identificador do módulo de navegador é
-> `dsh-plugin-deepseek-saldo`. Se você remover e reinstalar este mesmo pacote,
-> o DSH pode manter em cache o módulo antigo como "ausente" e a linha só volta
-> depois de reiniciar o app — é um comportamento do harness, não do plugin.
+> **Reinstalling:** the browser module id is `dsh-plugin-deepseek-saldo`. If you
+> remove and reinstall this same package, DSH may cache the old module as
+> "absent" and the row only comes back after restarting the app — that is
+> harness behavior, not the plugin.
 
-## Limitações
+## Limitations
 
-- Só aparece com a barra lateral expandida; no trilho de 56 px a linha é oculta.
-- O saldo é o da **conta da API** (chave `DEEPSEEK_API_KEY`). Se a chave for
-  trocada no ambiente, o próximo ciclo já lê o novo saldo.
-- A moeda vem da API (CNY ou USD); não há conversão para BRL.
+- Only visible with the sidebar expanded; in the 56 px rail the row is hidden.
+- The balance is the **API account** balance (`DEEPSEEK_API_KEY`). If the key is
+  changed in the environment, the next cycle reads the new balance.
+- The currency comes from the API (CNY or USD); there is no BRL conversion.
 
-## Licença
+## License
 
 MIT.
