@@ -1,5 +1,7 @@
 # DeepSeek Balance — plugin do DSH
 
+**Português** | [English](README.en.md)
+
 Mostra o saldo em dinheiro da sua conta DeepSeek na barra lateral esquerda,
 **logo acima do botão "More"**.
 
