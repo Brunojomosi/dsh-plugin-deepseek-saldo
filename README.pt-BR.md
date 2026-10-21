@@ -100,7 +100,8 @@ Para remover: Configurações → Plugins → DeepSeek Balance → desinstalar
 - Só aparece com a barra lateral expandida; no trilho de 56 px a linha é oculta.
 - O saldo é o da **conta da API** (chave `DEEPSEEK_API_KEY`). Se a chave for
   trocada no ambiente, o próximo ciclo já lê o novo saldo.
-- A moeda vem da API (CNY ou USD); não há conversão para BRL.
+- A moeda vem da API e é limitada a **CNY ou USD**; outras moedas não estão
+  disponíveis e não há conversão.
 
 ## Licença
 
