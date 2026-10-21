@@ -33,27 +33,22 @@ above the "More" button**.
   authenticated harness Connection).
 - `DEEPSEEK_API_KEY` configured — on DSH's **Models** page or as an environment
   variable of the process that starts the app.
-- No npm dependencies and no install scripts.
+- No third-party dependencies and no install scripts.
 
 ## Install
 
-With DSH open, ask the agent:
-
-> install the `dsh-plugin-deepseek-saldo` plugin
-
-`plugin_manager` downloads it from npm and enables it in the profile. After
-installing, the row appears on its own; no restart is needed on the first
-install.
-
-Alternative (from source): clone this repository and install the folder:
+Clone this repository and install the package folder:
 
 ```bash
 git clone https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo.git
 ```
 
+With DSH open, ask the agent:
+
 > install the plugin from the folder `C:\path\to\clone`
 
-`plugin_manager` accepts the absolute path of the package.
+`plugin_manager` accepts the absolute path of the package. After installing, the
+row appears on its own; no restart is needed on the first install.
 
 Repository and issues:
 <https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo>

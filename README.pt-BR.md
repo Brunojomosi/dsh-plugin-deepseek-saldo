@@ -35,27 +35,23 @@ Mostra o saldo em dinheiro da sua conta DeepSeek na barra lateral esquerda,
   Connection autenticada do harness).
 - Credencial `DEEPSEEK_API_KEY` configurada — na página **Modelos** do DSH ou
   como variável de ambiente do processo que inicia o app.
-- Nenhuma dependência npm e nenhum script de instalação.
+- Nenhuma dependência de terceiros e nenhum script de instalação.
 
 ## Instalação
 
-Com o DSH aberto, peça ao agente:
-
-> instale o plugin `dsh-plugin-deepseek-saldo`
-
-O `plugin_manager` baixa o pacote do npm e o habilita no perfil. Depois de
-instalado, a linha aparece sozinha na barra lateral; não é preciso reiniciar o
-app na primeira instalação.
-
-Alternativa (a partir do código): clone este repositório e instale a pasta:
+Clone este repositório e instale a pasta do pacote:
 
 ```bash
 git clone https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo.git
 ```
 
+Com o DSH aberto, peça ao agente:
+
 > instale o plugin a partir da pasta `C:\caminho\do\clone`
 
-O `plugin_manager` aceita o caminho absoluto do pacote.
+O `plugin_manager` aceita o caminho absoluto do pacote. Depois de instalado, a
+linha aparece sozinha na barra lateral; não é preciso reiniciar o app na
+primeira instalação.
 
 Repositório e issues:
 <https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo>

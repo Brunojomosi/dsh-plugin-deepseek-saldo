@@ -1,6 +1,7 @@
 {
   "name": "dsh-plugin-deepseek-saldo",
   "version": "1.0.2",
+  "private": true,
   "description": "Mostra o saldo em dinheiro da conta DeepSeek na barra lateral esquerda, acima do botao More",
   "keywords": [
     "dsh",
