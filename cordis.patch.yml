@@ -1,0 +1,11 @@
+# Patch do bundle `dsh-plugin-deepseek-saldo`.
+#
+# A metade de host (lib/index.js) registra a rota autenticada
+# GET /deepseek-balance/state, que resolve o saldo da conta DeepSeek.
+# A metade de navegador (lib/client.js) e descoberta pela declaracao
+# `dsh.client` do package.json e entra na barra lateral esquerda pelo
+# slot `sidebar.footer.action`, logo acima do botao "More".
+
+- insert:
+    - id: deepseek-balance
+      name: dsh-plugin-deepseek-saldo

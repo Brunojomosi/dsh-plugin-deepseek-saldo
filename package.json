@@ -1,0 +1,57 @@
+{
+  "name": "dsh-plugin-deepseek-saldo",
+  "version": "1.0.2",
+  "description": "Mostra o saldo em dinheiro da conta DeepSeek na barra lateral esquerda, acima do botao More",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "balance",
+    "saldo",
+    "sidebar"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo.git"
+  },
+  "homepage": "https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo#readme",
+  "bugs": {
+    "url": "https://github.com/Brunojomosi/dsh-plugin-deepseek-saldo/issues"
+  },
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  }
+}
